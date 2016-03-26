@@ -1,0 +1,30 @@
+{
+  "name": "tanzaku.js",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/tanzaku.js",
+  "scripts": {
+    "build": "rollup -c",
+    "prestart": "npm run build",
+    "start": "chokidar lib/tanzaku.js -c 'npm run build'",
+    "prepublish": "uglifyjs dist/tanzaku.js -o dist/tanzaku.min.js -cm --comments all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/totora0155/tanzaku.js.git"
+  },
+  "keywords": [
+    "notify"
+  ],
+  "author": "nju33",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/totora0155/tanzaku.js/issues"
+  },
+  "homepage": "https://github.com/totora0155/tanzaku.js#readme",
+  "devDependencies": {
+    "chokidar-cli": "^1.2.0",
+    "rollup": "^0.25.6",
+    "uglify-js": "^2.6.2"
+  }
+}
