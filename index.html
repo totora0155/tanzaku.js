@@ -9,14 +9,14 @@
   <p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
-    Lorem <span class="tooltip" data-tanzaku="ipsum">ipsum</span> dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
+    Lorem <span class="tooltip" data-tanzaku="text">ipsum</span> dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
+    Lorem ipsum dolor sit amet, <span class="tooltip" data-tanzaku="html">consectetur</span> adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
+    Lorem ipsum dolor <span class="tooltip" data-tanzaku="html2">sit</span> amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut tenetur quis amet veniam voluptatem aperiam asperiores consequatur repudiandae voluptatum obcaecati, numquam id explicabo aliquam adipisci. Deserunt, facilis, beatae.
@@ -42,8 +42,11 @@
 
   <script src="dist/tanzaku.js"></script>
   <script>
+    Tanzaku.config.maxWidth = '20em';
     var lipsumTip = new Tanzaku({
-      ipsum: 'ipsumipsum',
+      text: 'ipsum ipsum',
+      html: '<h3 style="margin:.5em 0;">consectetur</h3><p style="margin-bottom: 0;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maxime ut</p>',
+      html2: '<div style="overflow:hidden;width:15em"><img style="float:left;margin-right:1em" src="https://unsplash.it/50/50/?random"><p style="float:left">foooo</p></div>',
     }, 'lipsum');
 
     lipsumTip.init(document.getElementsByClassName('tooltip'));
