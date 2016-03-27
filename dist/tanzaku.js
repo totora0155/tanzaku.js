@@ -10,6 +10,7 @@
 }(this, function () { 'use strict';
 
   var exists = null;
+  var mouseover = false;
 
   Tanzaku.config = {
     maxWidth: '20em',
@@ -49,6 +50,11 @@
   }
 
   function show(e) {
+    if (mouseover) {
+      return;
+    }
+    mouseover = true;
+
     var el = e.currentTarget;
     var key = el.getAttribute('data-tanzaku');
     var value = this.data[key];
@@ -59,16 +65,18 @@
     } else {
       if (this._cache[key]) {
         box = this._cache[key];
+        adjust(box);
         box.style.display = 'block';
-        setTimeout(function() {
+        timeout(function() {
           box.style.opacity = '1';
-        }, 0)
+        });
       } else {
         var imgs = pickImages(value);
         var handle = function () {
           box = create(value, this.opts.name);
           this._cache[key] = box;
           insert(el, box);
+          adjust(box);
         }.bind(this);
 
         if (imgs.length) {
@@ -89,6 +97,7 @@
       box.style.opacity = 0;
       setTimeout(function() {
         box.style.display = 'none';
+        mouseover = false;
       }, 200)
     }
   }
@@ -96,14 +105,26 @@
   function insert(el, box) {
     el.innerHTML = '<span class="tanzaku__origin">' + el.innerText + '</span>';
     el.appendChild(box);
-    adjust(box);
+    transform(box);
   }
 
-  function adjust(box) {
+  function transform(box) {
     var width = box.children[0].clientWidth;
     box.children[0].style.width = width + 'px';
     box.children[0].style.whiteSpace = 'normal';
     box.style.width = '100%';
+  }
+
+  function adjust(box) {
+    box.children[0].style.left = 0;
+    timeout(function() {
+      var offsetLeft = box.getBoundingClientRect().left;
+      var width = box.children[0].clientWidth;
+      if (offsetLeft + width > innerWidth) {
+        var size = offsetLeft + width - innerWidth;
+        box.children[0].style.left = -size + 'px';
+      }
+    });
   }
 
   function pickImages(str) {
@@ -134,6 +155,14 @@
     }
   }
 
+  function timeout(cb) {
+    if (requestAnimationFrame) {
+      requestAnimationFrame(cb)
+    } else {
+      setTimeout(cb, 0);
+    }
+  }
+
   function injectStyle() {
     var style = document.createElement('style');
     var css = '.tanzaku__box {' +
@@ -147,6 +176,7 @@
                 'transition: opacity .1s linear;' +
               '}' +
               '.tanzaku__inner {' +
+                'position: relative;' +
                 'max-width: ' + Tanzaku.config.maxWidth + ';' +
                 'max-height: ' + Tanzaku.config.maxHeight + ';' +
                 'box-sizing: border-box;' +
