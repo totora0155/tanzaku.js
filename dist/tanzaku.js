@@ -15,6 +15,7 @@
   Tanzaku.config = {
     maxWidth: '20em',
     maxHeight: '15em',
+    duration: 100,
   };
 
   function Tanzaku(data, opts) {
@@ -76,7 +77,9 @@
           box = create(value, this.opts.name);
           this._cache[key] = box;
           insert(el, box);
-          adjust(box);
+          timeout(function() {
+            box.style.opacity = '1';
+          });
         }.bind(this);
 
         if (imgs.length) {
@@ -95,10 +98,14 @@
 
     if (box) {
       box.style.opacity = 0;
-      setTimeout(function() {
-        box.style.display = 'none';
-        mouseover = false;
-      }, 200)
+      try {
+        setTimeout(function() {
+          box.style.display = 'none';
+          mouseover = false;
+        }, Tanzaku.config.duration);
+      } catch (e) {
+        throw Error(e);
+      }
     }
   }
 
@@ -106,6 +113,7 @@
     el.innerHTML = '<span class="tanzaku__origin">' + el.innerText + '</span>';
     el.appendChild(box);
     transform(box);
+    adjust(box);
   }
 
   function transform(box) {
@@ -165,6 +173,7 @@
 
   function injectStyle() {
     var style = document.createElement('style');
+    var duration = Tanzaku.config.duration / 1000;
     var css = '.tanzaku__box {' +
                 'position: absolute;' +
                 'right: 50%;' +
@@ -172,8 +181,9 @@
                 '-webkit-transform: translateX(50%);' +
                 '-ms-transform: translateX(50%);' +
                 'transform: translateX(50%);' +
-                '-webkit-transition: opacity .1s linear;' +
-                'transition: opacity .1s linear;' +
+                '-webkit-transition: opacity ' + duration + 's linear;' +
+                'transition: opacity ' + duration  + 's linear;' +
+                'opacity: 0;' +
               '}' +
               '.tanzaku__inner {' +
                 'position: relative;' +
