@@ -13,6 +13,7 @@
 
   Tanzaku.config = {
     maxWidth: '20em',
+    maxHeight: '15em',
   };
 
   function Tanzaku(data, opts) {
@@ -147,12 +148,14 @@
               '}' +
               '.tanzaku__inner {' +
                 'max-width: ' + Tanzaku.config.maxWidth + ';' +
+                'max-height: ' + Tanzaku.config.maxHeight + ';' +
                 'box-sizing: border-box;' +
                 'padding: .3em .5em;' +
                 'margin-top: 1.3em;' +
                 'white-space: pre;' +
                 'word-wrap: break-word;' +
                 'overflow-wrap: break-word;' +
+                'overflow: auto;' +
                 'background: #414141;' +
                 'color: #fff;' +
               '}' +
