@@ -69,7 +69,7 @@
         adjust(box);
         box.style.display = 'block';
         timeout(function() {
-          box.style.opacity = '1';
+          box.style.opacity = 1;
         });
       } else {
         var imgs = pickImages(value);
@@ -78,7 +78,7 @@
           this._cache[key] = box;
           insert(el, box);
           timeout(function() {
-            box.style.opacity = '1';
+            box.style.opacity = 1;
           });
         }.bind(this);
 
